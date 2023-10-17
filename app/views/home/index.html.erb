@@ -4,7 +4,7 @@
 <h2>Galpões</h2>
 
 <% if @warehouses.empty? %>
-  <p>'Não existem galpões cadastrados</p>
+  <p>Não existem galpões cadastrados</p>
 <% else %>
   <% @warehouses.each do |w| %>
     <p><%= w.name %></p>

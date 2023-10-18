@@ -5,7 +5,7 @@ describe 'Usuário visita tela inicial' do
     # Arrange (único bloco que pode estar vazio)
 
     # Act
-    visit('/')
+    visit(root_path)
 
     # Assert
     expect(page).to have_content('Galpões & Estoque')

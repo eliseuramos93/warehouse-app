@@ -7,7 +7,7 @@
   <p>Não existem galpões cadastrados</p>
 <% else %>
   <% @warehouses.each do |w| %>
-    <p><%= w.name %></p>
+    <p><%= link_to w.name, warehouse_path(w.id) %></p>
     <p>Cidade: <%= w.city %></p>
     <p>Código: <%= w.code %></p>
     <p><%= w.area %> m2</p>

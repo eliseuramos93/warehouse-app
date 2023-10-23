@@ -1,0 +1,26 @@
+<h1>Informações sobre <%= @supplier.brand_name %></h1>
+
+<dl>
+  <dd>
+    <strong>Razão social:</strong> <%= @supplier.corporate_name %>
+  </dd>
+  <dd>
+    <strong>Nome fantasia:</strong> <%= @supplier.brand_name %>
+  </dd>
+  <dd>
+    <strong>CNPJ:</strong> <%= @supplier.registration_number %>
+  </dd>
+  <dd>
+    <strong>Endereço:</strong> <%= @supplier.full_address %>. 
+    <%= @supplier.city %> - <%= @supplier.state %>
+  </dd>
+  <dd>
+    <strong>E-mail:</strong> <%= @supplier.email %>
+  </dd>
+</dl>
+
+
+<div>
+  <%= link_to 'Editar', edit_supplier_path(@supplier.id) %>
+  <%= link_to 'Voltar', suppliers_path %>
+</div>

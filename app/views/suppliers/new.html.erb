@@ -1,0 +1,11 @@
+<h1>Novo Fornecedor</h1>
+
+<% if @supplier.errors.any? %>
+  <dl>
+    <% @supplier.errors.full_messages.each do |msg| %>
+      <dd><%= msg %></dd>
+    <% end %>
+  </dl>
+<% end %>
+
+<%= render 'form' %>

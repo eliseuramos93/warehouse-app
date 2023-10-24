@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :warehouses, except: [:index]
   resources :suppliers, except: [:destroy]
+  resources :product_models, only: [:index, :new, :create, :show]
 end

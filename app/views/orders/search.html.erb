@@ -1,0 +1,13 @@
+<h1>Resultados da busca por: <%= @code %></h1>
+
+<p>
+  <%= @orders.count %> 
+  <%= (Order.model_name.human count: @orders.count).downcase %> 
+  <%= I18n.t :found, count: @orders.count %>
+</p>
+
+<%= @orders.each do |order| %>
+  <dl>
+    <%= render order %>
+  </dl>
+<% end %>

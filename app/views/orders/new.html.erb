@@ -1,5 +1,11 @@
 <h1>Registrar Pedido</h1>
 
+<% if @order.errors.any? %>
+  <% @order.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+<% end %>
+
 <%= form_with model: @order do |f| %>
   <div>
     <%= f.label :warehouse_id %>

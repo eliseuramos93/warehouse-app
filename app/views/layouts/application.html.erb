@@ -17,13 +17,21 @@
       <nav>
         <%= link_to 'Fornecedores', suppliers_path %> |
         <%= link_to 'Modelos de Produtos', product_models_path %> |
-        <%= link_to 'Registrar Pedido', new_order_path %>
+        <%= link_to 'Registrar Pedido', new_order_path %> |
+        <%= link_to 'Meus Pedidos', orders_path  %>
         <% unless user_signed_in? %>
           <%= link_to 'Entrar', new_user_session_path %>
         <% else %>
+          <%= form_with(url: search_orders_path, method: :get) do |f| %>
+            <%= f.label :query, 'Buscar Pedido' %>
+            <%= f.text_field :query %>
+            <%= f.submit 'Buscar' %>
+          <% end %>
+          |
           <%= button_to 'Sair', destroy_user_session_path, method: :delete %> |
           <%= current_user.description %>
-        <% end %>
+        <% end %> 
+
       </nav>
     </header>
     <main>

@@ -11,11 +11,11 @@
       <div>
         <h3><%= link_to w.name, warehouse_path(w.id) %></h3>
         <dl>
-          <dt>Cidade: </dt>
+          <dt><%= Warehouse.human_attribute_name(:city) %>:</dt>
           <dd><%= w.city %></dd>
-          <dt>Código:</dt>
+          <dt><%= Warehouse.human_attribute_name(:code) %>:</dt>
           <dd><%= w.code %></dd>
-          <dt>Área: </dt>
+          <dt><%= Warehouse.human_attribute_name(:area) %>: </dt>
           <dd><%= w.area %> m2</dd>
         </dl>
       </div>

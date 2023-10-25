@@ -8,9 +8,9 @@
       <h2><%= pm.name %></h2>
 
       <dl>
-        <dt>Fornecedor: </dt>
+        <dt><%= ProductModel.human_attribute_name(:supplier_id) %>: </dt>
         <dd><%= pm.supplier.brand_name %></dd>
-        <dt>SKU: </dt>
+        <dt><%= ProductModel.human_attribute_name(:sku) %>: </dt>
         <dd><%= pm.sku %></dd>
       </dl>
     </div>

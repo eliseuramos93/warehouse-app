@@ -2,20 +2,25 @@
 
 <dl>
   <dd>
-    <strong>Razão social:</strong> <%= @supplier.corporate_name %>
+    <strong><%= Supplier.human_attribute_name(:corporate_name) %>:</strong> 
+    <%= @supplier.corporate_name %>
   </dd>
   <dd>
-    <strong>Nome fantasia:</strong> <%= @supplier.brand_name %>
+    <strong><%= Supplier.human_attribute_name(:brand_name) %>:</strong> 
+    <%= @supplier.brand_name %>
   </dd>
   <dd>
-    <strong>CNPJ:</strong> <%= @supplier.registration_number %>
+    <strong><%= Supplier.human_attribute_name(:registration_number) %>:</strong> 
+    <%= @supplier.registration_number %>
   </dd>
   <dd>
-    <strong>Endereço:</strong> <%= @supplier.full_address %>. 
+    <strong><%= Supplier.human_attribute_name(:full_address) %>:</strong> 
+    <%= @supplier.full_address %>. 
     <%= @supplier.city %> - <%= @supplier.state %>
   </dd>
   <dd>
-    <strong>E-mail:</strong> <%= @supplier.email %>
+    <strong><%= Supplier.human_attribute_name(:email) %>:</strong> 
+    <%= @supplier.email %>
   </dd>
 </dl>
 

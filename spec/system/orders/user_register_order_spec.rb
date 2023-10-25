@@ -30,6 +30,7 @@ describe 'Usuário cadastra um pedido' do
                                 registration_number: '12.345.678/0001-90',
                                 full_address: 'Avenida Paulista, 1000', 
                                 city: 'São Paulo', state: 'SP', email: 'brazil@apple.com')
+    allow(SecureRandom).to receive(:alphanumeric).and_return('ABC12345')
     
 
     # Act
@@ -43,6 +44,7 @@ describe 'Usuário cadastra um pedido' do
     
     # Assert
     expect(page).to have_content 'Pedido registrado com sucesso'
+    expect(page).to have_content 'Pedido: ABC12345'
     expect(page).to have_content 'Galpão Destino: GRU | Aeroporto SP'
     expect(page).to have_content 'Fornecedor: Apple do Brasil'
     expect(page).to have_content 'Data Prevista de Entrega: 20/12/2023'

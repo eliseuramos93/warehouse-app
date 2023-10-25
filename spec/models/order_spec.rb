@@ -13,12 +13,56 @@ RSpec.describe Order, type: :model do
                                   registration_number: '12.345.678/0001-90',
                                   full_address: 'Avenida Paulista, 1000', 
                                   city: 'São Paulo', state: 'SP', email: 'brazil@apple.com')
-      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: '2023-10-01')
+      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
 
       # Act
       
       # Assert
       expect(order).to be_valid
+    end
+
+    it 'data estimada de entrega de ve ser obrigatória' do
+       # Arrange
+       order = Order.new
+ 
+       # Act
+       order.valid?
+
+       # Assert
+       expect(order.errors.include? :estimated_delivery_date).to be true  
+    end
+
+    it 'data estimada não deve ser 1 ou mais dias no passado' do
+      # Arrange
+      order = Order.new(estimated_delivery_date: 1.day.ago)
+
+      # Act
+      order.valid?
+
+      # Assert
+      expect(order.errors[:estimated_delivery_date]).to include('deve ser futura.')
+    end
+
+    it 'data estimada não deve ser hoje' do
+      # Arrange
+      order = Order.new(estimated_delivery_date: Date.today)
+
+      # Act
+      order.valid?
+
+      # Assert
+      expect(order.errors[:estimated_delivery_date]).to include('deve ser futura.')
+    end
+
+    it 'data estimada deve ser igual ou maior do que amanhã' do
+      # Arrange
+      order = Order.new(estimated_delivery_date: 1.day.from_now)
+
+      # Act
+      order.valid?
+
+      # Assert
+      expect(order.errors.include? :estimated_delivery_date).to be false  
     end
   end
 
@@ -34,7 +78,7 @@ RSpec.describe Order, type: :model do
                                   registration_number: '12.345.678/0001-90',
                                   full_address: 'Avenida Paulista, 1000', 
                                   city: 'São Paulo', state: 'SP', email: 'brazil@apple.com')
-      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: '2023-10-01')
+      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
 
       # Act
       order.save!
@@ -56,7 +100,7 @@ RSpec.describe Order, type: :model do
                                   registration_number: '12.345.678/0001-90',
                                   full_address: 'Avenida Paulista, 1000', 
                                   city: 'São Paulo', state: 'SP', email: 'brazil@apple.com')
-      first_order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: '2023-10-01')
+      first_order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
       second_order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: '2023-11-15')
 
       # Act

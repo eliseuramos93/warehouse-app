@@ -19,6 +19,14 @@
 </p>
 
 <div>
+  <h2>Itens em Estoque</h2>
+
+  <% @stocks.each do |stock, count| %>
+    <p> <%= count %> x <%= stock.sku %> </p>
+  <% end %>
+</div>
+
+<div>
   <%= link_to 'Editar', edit_warehouse_path(@warehouse.id) %> <br>
   <%= button_to 'Remover', warehouse_path(@warehouse.id), method: :delete %>
 </div>

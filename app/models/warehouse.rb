@@ -5,6 +5,7 @@ class Warehouse < ApplicationRecord
   validates :code, uniqueness: true
 
   has_many :orders
+  has_many :stock_products
 
   def full_description
     "#{code} | #{name}"

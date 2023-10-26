@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_25_150131) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_26_164303) do
+  create_table "order_items", force: :cascade do |t|
+    t.integer "product_model_id", null: false
+    t.integer "order_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_model_id"], name: "index_order_items_on_product_model_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "warehouse_id", null: false
     t.integer "supplier_id", null: false
@@ -19,6 +29,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_25_150131) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "code"
+    t.integer "status", default: 0
     t.index ["supplier_id"], name: "index_orders_on_supplier_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
     t.index ["warehouse_id"], name: "index_orders_on_warehouse_id"
@@ -74,6 +85,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_25_150131) do
     t.string "description"
   end
 
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "product_models"
   add_foreign_key "orders", "suppliers"
   add_foreign_key "orders", "users"
   add_foreign_key "orders", "warehouses"

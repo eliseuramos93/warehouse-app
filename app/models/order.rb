@@ -9,12 +9,12 @@ class Order < ApplicationRecord
   validates :code, :estimated_delivery_date, presence: true
   validate :estimated_delivery_date_is_future
 
-  before_validation :generate_code
+  before_validation :generate_code, on: :create
 
   private 
 
   def generate_code
-    self.code = SecureRandom.alphanumeric(8).upcase if self.code.nil?
+    self.code = SecureRandom.alphanumeric(8).upcase
   end
 
   def estimated_delivery_date_is_future
